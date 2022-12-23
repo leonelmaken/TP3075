@@ -8,16 +8,19 @@ import lombok.AllArgsConstructor;
 import modele.Compte;
 import repository.AppRepository;
 
-@SuppressWarnings("rawtypes")
+@SuppressWarnings({ "rawtypes", "hiding" })
 @Service
 @AllArgsConstructor
-public class UserService<Compt, Solde> implements AppPhone{
+public class UserService implements AppPhone{
 
 	private final AppRepository App = null;
 
 	@Override
-	public void ModifierInfo(long idUser, int Numero, String CodePin) {
-		// TODO Auto-generated method stub
+	
+	public Compte ModifierInfo(long idUser, Compte compte) {
+		
+		return App.findById();
+		
 		
 	}
 
@@ -42,16 +45,15 @@ public class UserService<Compt, Solde> implements AppPhone{
 		// TODO Auto-generated method stub
 		return App.findAll();
 	}
-
 	@Override
-	public Compte CréerCompt(int Numero, String CodePin) {
+	public modele.Compte CréerCompt(modele.Compte compte) {
 		// TODO Auto-generated method stub
-		return App.save(Compte);
+		return App.save(compte);
 	}
 
 	@Override
-	public void SupprimerCompt(int Numero, String CodePin, long idUser) {
+	public String SupprimerCompt(long idUser, String CodePin) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 }
