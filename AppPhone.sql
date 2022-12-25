@@ -25,7 +25,7 @@ CREATE TABLE Users (
 	nameUser				varchar(20)	NOT NULL,
 	CodePin			int(20)	NOT NULL,
 	Numero	int(20)		NOT NULL REFERENCES Numero(Compte),
-	Solde               int(600)   REFERENCES Compte(Solde)
+	Solde               int(255)   REFERENCES Compte(Solde)
 ) ENGINE = InnoDB;
 
 
@@ -48,7 +48,7 @@ CREATE TABLE Admins (
 	CodePin				int(4)		NOT NULL REFERENCES Users(CodePin),
 	nameUser		    varchar(20)		NOT NULL REFERENCES Users(nameUser),
 	Numero              int(20)     NOT NULL REFERENCES Users(Numero),
-	Solde               int(600)   REFERENCES Compte(Solde);  
+	Solde               int(255)   REFERENCES Compte(Solde)
 ) ENGINE = InnoDB;
 
 INSERT INTO Admins (IdUser, CodePin,nameUser,Numero,Solde)VALUES ( 1,15780, 'Anderson',653124707,75000);
@@ -60,7 +60,7 @@ INSERT INTO Admins (IdUser, CodePin,nameUser,Numero,Solde) VALUES ( 5,68932, 'Bo
 CREATE TABLE ComptStructure (
 	IdCompt			int(4)		PRIMARY KEY AUTO_INCREMENT,
 	nameUser		VARCHAR(200)     	NOT NULL REFERENCES Users(nameUser),
-	Solde				int(600)       REFERENCES Compte(Solde),
+	Solde				int(255)       REFERENCES Compte(Solde),
 	Numero		int(20)	NOT NULL REFERENCES Compte(Numero)
 ) ENGINE = InnoDB;
 
@@ -76,7 +76,7 @@ CREATE TABLE ResponsCoin (
 	IdUser		int(4)		NOT NULL REFERENCES Users(IdUser),
 	Poste			VARCHAR(200)		NOT NULL,
 	Numero       int(20)  NOT NULL REFERENCES Compte(Numero),
-	Solde        int(600)    REFERENCES Compte(Solde)
+	Solde        int(255)    REFERENCES Compte(Solde)
 ) ENGINE = InnoDB;
 
 INSERT INTO ResponsCoin (IdUser,Poste,Numero,Solde) VALUES (2,"CalBoxeur",612034578,0); 
