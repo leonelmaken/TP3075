@@ -25,6 +25,7 @@ private final UserService user = new UserService();
    public Compte update(@PathVariable long idUser,Compte compte) {
 	return user.ModifierInfo(idUser,compte);
    }
+   @PostMapping(path="/delete")
    public String delete(@PathVariable long idUser,String CodePin) {
 	return user.SupprimerCompt(idUser, CodePin);
 	   

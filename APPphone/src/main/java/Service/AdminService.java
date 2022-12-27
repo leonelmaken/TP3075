@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
+import modele.Compte;
 
 @SuppressWarnings({ "unused", "rawtypes" })
 public class AdminService implements Admin{
@@ -37,6 +38,12 @@ public class AdminService implements Admin{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List ListeRespons() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Compte> AfficheCompte() {
 		// TODO Auto-generated method stub
 		return null;
 	}

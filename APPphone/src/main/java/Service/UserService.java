@@ -1,6 +1,7 @@
 package Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -19,9 +20,7 @@ public class UserService implements AppPhone{
 	
 	public Compte ModifierInfo(long idUser, Compte compte) {
 		
-		return App.findById();
-		
-		
+		return App.findById(idUser);
 	}
 
 	@Override
@@ -46,7 +45,7 @@ public class UserService implements AppPhone{
 		return App.findAll();
 	}
 	@Override
-	public modele.Compte CréerCompt(modele.Compte compte) {
+	public Compte CréerCompt(Compte compte) {
 		// TODO Auto-generated method stub
 		return App.save(compte);
 	}
