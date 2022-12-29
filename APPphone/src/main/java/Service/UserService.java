@@ -1,7 +1,6 @@
 package Service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -17,10 +16,16 @@ public class UserService implements AppPhone{
 	private final AppRepository App = null;
 
 	@Override
-	
 	public Compte ModifierInfo(long idUser, Compte compte) {
 		
-		return App.findById(idUser);
+		return App.findById(idUser)
+				.map(compt->{
+					compt.setCodePin(compt.getCodePin());
+					compt.setNumero(compt.getNumero());
+					compt.setUsername(compt.getUsername());
+				}).orElseThrows(()->new RuntimeException("Compte nom trouvé !"));
+		//return App.findById(idUser);
+		return new Compte();
 	}
 
 	@Override
@@ -45,7 +50,7 @@ public class UserService implements AppPhone{
 		return App.findAll();
 	}
 	@Override
-	public Compte CréerCompt(Compte compte) {
+	public Compte CreerCompt(Compte compte) {
 		// TODO Auto-generated method stub
 		return App.save(compte);
 	}
@@ -53,6 +58,7 @@ public class UserService implements AppPhone{
 	@Override
 	public String SupprimerCompt(long idUser, String CodePin) {
 		// TODO Auto-generated method stub
-		return null;
+		App.deleteById(idUser);
+		return "Compte supprimé Supprimé";
 	}
 }
