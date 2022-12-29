@@ -47,5 +47,11 @@ public class AdminService implements Admin{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public Compte rechercheCompte(int Numero) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
 
