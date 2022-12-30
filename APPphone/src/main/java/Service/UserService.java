@@ -1,32 +1,44 @@
 package Service;
 
-import java.util.List;
-
+import java.util.Optional;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import modele.Compte;
-import repository.AppRepository;
+import repository.ComptRepository;
 
-@SuppressWarnings({ "rawtypes", "hiding" })
+@SuppressWarnings({ "hiding" })
 @Service
-@AllArgsConstructor
-public class UserService implements AppPhone{
+//@AllArgsConstructor
+@RequiredArgsConstructor
+ 
 
-	private final AppRepository App = null;
+public class UserService implements AppPhone{
+ 
+	private  ComptRepository comptrepo;
 
 	@Override
-	public Compte ModifierInfo(long idUser, Compte compte) {
-		
-		return App.findById(idUser)
-				.map(compt->{
-					compt.setCodePin(compt.getCodePin());
-					compt.setNumero(compt.getNumero());
-					compt.setUsername(compt.getUsername());
-				}).orElseThrows(()->new RuntimeException("Compte nom trouvé !"));
+	public ResponseEntity<String> ModifierInfo(long idUser, Compte compte) {
+		Optional<Compte> compt = comptrepo.findById(idUser);
+		if(compt == null) {
+			return new ResponseEntity<>(
+			          "Id n'existe pas", 
+			          HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
 
-		//return App.findById(idUser);
-		return new Compte();
+		}
+		
+		if (compte.getUserName()!= null && compt.get().getUserName() != compte.getUserName()) {
+					 compt.get().setUserName(compte.getUserName());
+		}
+						//return App.findById(idUser);
+		comptrepo.saveAndFlush(compt.get());
+		 return new ResponseEntity<>(
+		          "Le compte a été modifié", 
+		          HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
 	@Override
@@ -45,21 +57,48 @@ public class UserService implements AppPhone{
 		// TODO Auto-generated method stub
 	}
 
-	@Override
-	public List DernierTransac() {
+	//@Override
+	/*public List DernierTransac() {
 		// TODO Auto-generated method stub
-		return App.findAll();
-	}
+		return ((ListCrudRepository<Compte, Long>) comptrepo).findAll();
+	}*/
 	@Override
-	public Compte CreerCompt(Compte compte) {
+	public
+	 ResponseEntity<String> CréerCompt(Compte compte) {
 		// TODO Auto-generated method stub
-		return App.save(compte);
+		System.out.println("le compte :"+compte);
+		System.out.println("////////le username :"+compte.getUserName());
+		if (compte.getUserName().equals(null)) {
+	        return new ResponseEntity<>(
+	          "Vous devez entrer Votre User name", 
+	          HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
+	    }
+	   else if (compte.getNumero()==0) {
+	        return new ResponseEntity<>(
+	          "Vous devez entrer Votre Numéro de téléphone", 
+	          HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
+	    }
+	   else if (compte.getCodePin().equals(null)) {
+	        return new ResponseEntity<>(
+	          "Vous devez entrer votre code Pin", 
+	          HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
+	    }
+	   else if (compte.getNumeroCni()==0) {
+	        return new ResponseEntity<>(
+	          "Vous devez entrer votre Numéro de CNI", 
+	          HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
+	    }
+
+		comptrepo.save(compte);
+	   return new ResponseEntity<>(
+			      "Votre Compte a été enregistré avec succès " + compte, 
+			      HttpStatus.OK);	
 	}
 
 	@Override
 	public String SupprimerCompt(long idUser, String CodePin) {
 		// TODO Auto-generated method stub
-		App.deleteById(idUser);
+		((CrudRepository<Compte, Long>) comptrepo).deleteById(idUser);
 		return "Compte supprimé Supprimé";
 	}
 }

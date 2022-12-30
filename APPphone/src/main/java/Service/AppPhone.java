@@ -1,15 +1,17 @@
 package Service;
 
-import java.util.List;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import modele.Compte;
 
-public interface AppPhone<Transaction> {
-    Compte CréerCompt(Compte compte);
-    Compte ModifierInfo(long idUser,Compte compte);
+@Service
+public interface AppPhone  {
+    ResponseEntity<String> CréerCompt(Compte compte);
+    ResponseEntity<String> ModifierInfo(long idUser,Compte compte);
     public void ChangeLangue();
     public void Transaction();
     public void ConsultSolde(long idUser,int Numero);
     String SupprimerCompt(long idUser,String CodePin);
-    public List<Transaction> DernierTransac();
+    //List<Transaction> DernierTransac();
 }
