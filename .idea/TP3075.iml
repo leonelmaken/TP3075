@@ -13,6 +13,7 @@
       <sourceFolder url="file://$MODULE_DIR$/AppPhone/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/APPphone/src/test/resources" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/APPphone/src/main/java" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/dataSources" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
