@@ -1,32 +1,34 @@
 package modele;
 
 import jakarta.persistence.Entity;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
+//@AllArgsConstructor
 public class Compte {
-	
 	private Long idUser;
     private String userName;
     private int numero;
+	private double solde;
     private String codePin;
     private int numeroCni;
+
     public Compte() {
-    	
     }
-	public Compte(Long idUser, String userName, int numero, String codePin, int numeroCni) {
+
+	public Compte(Long idUser, String userName, int numero, double solde, String codePin, int numeroCni) {
 		super();
 		this.idUser = idUser;
 		this.userName = userName;
 		this.numero = numero;
+		this.solde = solde;
 		this.codePin = codePin;
 		this.numeroCni = numeroCni;
 	}
+
 	public Long getIdUser() {
 		return idUser;
 	}
@@ -56,6 +58,12 @@ public class Compte {
 	}
 	public void setNumeroCni(int numeroCni) {
 		this.numeroCni = numeroCni;
+	}
+	public double getSolde() {
+		return solde;
+	}
+	public void setSolde(int solde) {
+		this.solde = solde;
 	}
 	@Override
 	public String toString() {
