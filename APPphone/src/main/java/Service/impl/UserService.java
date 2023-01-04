@@ -1,25 +1,26 @@
-package Service;
+package Service.impl;
 
 import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import lombok.AllArgsConstructor;
+import Service.api.AppPhone;
 import lombok.RequiredArgsConstructor;
 import modele.Compte;
 import repository.ComptRepository;
 
 @SuppressWarnings({ "hiding" })
 @Service
-//@AllArgsConstructor
 @RequiredArgsConstructor
  
 
 public class UserService implements AppPhone{
- 
-	private  ComptRepository comptrepo;
+    @Autowired
+	 ComptRepository comptrepo;
 
 	@Override
 	public ResponseEntity<String> ModifierInfo(long idUser, Compte compte) {
@@ -62,37 +63,44 @@ public class UserService implements AppPhone{
 		// TODO Auto-generated method stub
 		return ((ListCrudRepository<Compte, Long>) comptrepo).findAll();
 	}*/
+	
 	@Override
 	public
-	 ResponseEntity<String> CréerCompt(Compte compte) {
+	 ResponseEntity<Object> CréerCompt(Compte compte) {
 		// TODO Auto-generated method stub
 		System.out.println("le compte :"+compte);
 		System.out.println("////////le username :"+compte.getUserName());
-		if (compte.getUserName().equals(null)) {
-	        return new ResponseEntity<>(
-	          "Vous devez entrer Votre User name", 
-	          HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
-	    }
-	   else if (compte.getNumero()==0) {
-	        return new ResponseEntity<>(
-	          "Vous devez entrer Votre Numéro de téléphone", 
-	          HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
-	    }
-	   else if (compte.getCodePin().equals(null)) {
-	        return new ResponseEntity<>(
-	          "Vous devez entrer votre code Pin", 
-	          HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
-	    }
-	   else if (compte.getNumeroCni()==0) {
-	        return new ResponseEntity<>(
-	          "Vous devez entrer votre Numéro de CNI", 
-	          HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
-	    }
+	try {
+			if (compte.getUserName().equals(null)) {
+		        return new ResponseEntity<>(
+		          "Vous devez entrer Votre User name", 
+		          HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
+		    }
+		   else if (compte.getNumero()==0) {
+		        return new ResponseEntity<>(
+		          "Vous devez entrer Votre Numéro de téléphone", 
+		          HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
+		    }
+		   else if (compte.getCodePin().equals(null)) {
+		        return new ResponseEntity<>(
+		          "Vous devez entrer votre code Pin", 
+		          HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
+		    }
+		   else if (compte.getNumeroCni()==0) {
+		        return new ResponseEntity<>(
+		          "Vous devez entrer votre Numéro de CNI", 
+		          HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
+		    }
 
-		comptrepo.save(compte);
-	   return new ResponseEntity<>(
-			      "Votre Compte a été enregistré avec succès " + compte, 
-			      HttpStatus.OK);	
+			compte = comptrepo.save(compte);
+		   return new ResponseEntity<>(
+				      "Votre Compte a été enregistré avec succès " + compte, 
+				      HttpStatus.OK);	
+	}catch(Exception e) {
+		return new ResponseEntity<>(
+			      "Erreur 500",HttpStatus.INTERNAL_SERVER_ERROR);	
+	}
+		
 	}
 
 	@Override

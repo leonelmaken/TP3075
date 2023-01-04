@@ -6,9 +6,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Getter
-@Setter
-@AllArgsConstructor
 public class Compte {
 	
 	private Long idUser;
@@ -16,6 +13,7 @@ public class Compte {
     private int numero;
     private String codePin;
     private int numeroCni;
+    
     public Compte() {
     	
     }
