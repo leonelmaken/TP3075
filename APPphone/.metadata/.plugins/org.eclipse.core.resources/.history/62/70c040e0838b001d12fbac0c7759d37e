@@ -1,0 +1,53 @@
+package com.Test2.Test2.modele;
+
+import jakarta.persistence.Entity;
+
+@Entity
+public class Compte {
+
+	private Long idUser;
+    private String userName;
+    private int numero;
+    private String codePin;
+    private int numeroCni;
+    
+	
+	public Long getIdUser() {
+		return idUser;
+	}
+	public void setIdUser(Long idUser) {
+		this.idUser = idUser;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	public int getNumero() {
+		return numero;
+	}
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+	public String getCodePin() {
+		return codePin;
+	}
+	public void setCodePin(String codePin) {
+		this.codePin = codePin;
+	}
+	public int getNumeroCni() {
+		return numeroCni;
+	}
+	public void setNumeroCni(int numeroCni) {
+		this.numeroCni = numeroCni;
+	}
+
+	
+	@Override
+	public String toString() {
+		return "Compte [idUser=" + idUser + ", userName=" + userName + ", numero=" + numero + ", codePin=" + codePin
+				+ ", numeroCni=" + numeroCni + "]";
+	}
+	
+}

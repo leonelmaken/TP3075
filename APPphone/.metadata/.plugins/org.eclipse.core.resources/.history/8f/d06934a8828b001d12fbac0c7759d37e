@@ -1,0 +1,8 @@
+package com.Test2.Test2.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+
+public interface ComptRepository extends JpaRepository<com.Test2.Test2.modele.Compte, Long>{
+
+}

@@ -1,0 +1,22 @@
+package com.momo.momo;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import com.momo.momo.entities.Compte;
+import com.momo.momo.repos.CompteRepository;
+
+@SpringBootTest
+class MomOphoneApplicationTests {
+	
+    @Autowired
+	private CompteRepository compteRepository;
+	
+	@Test
+	void contextLoads() {
+		Compte compt = new Compte("Emma",85000.5,"85693",655134314,456398);
+		compteRepository.save(compt);
+	}
+
+}

@@ -1,0 +1,58 @@
+package com.Test2.Test2.Service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import com.Test2.Test2.modele.Compte;
+import com.Test2.Test2.repository.ComptRepository;
+
+
+@Service
+public class UserService implements AppPhone{
+	
+	@Autowired ComptRepository comptrepo;
+
+	@Override
+	public
+	 ResponseEntity<Object> CréerCompt(Compte compte) {
+		// TODO Auto-generated method stub
+		System.out.println("le compte :"+compte);
+		System.out.println("////////le username :"+compte.getUserName());
+	try {
+			if (compte.getUserName().equals(null)) {
+		        return new ResponseEntity<>(
+		          "Vous devez entrer Votre User name", 
+		          HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
+		    }
+		   else if (compte.getNumero()==0) {
+		        return new ResponseEntity<>(
+		          "Vous devez entrer Votre Numéro de téléphone", 
+		          HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
+		    }
+		   else if (compte.getCodePin().equals(null)) {
+		        return new ResponseEntity<>(
+		          "Vous devez entrer votre code Pin", 
+		          HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
+		    }
+		   else if (compte.getNumeroCni()==0) {
+		        return new ResponseEntity<>(
+		          "Vous devez entrer votre Numéro de CNI", 
+		          HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
+		    }
+
+			compte = comptrepo.save(compte);
+		   return new ResponseEntity<>(
+				      "Votre Compte a été enregistré avec succès " + compte, 
+				      HttpStatus.OK);	
+	}catch(Exception e) {
+		return new ResponseEntity<>(
+			      "Erreur 500",HttpStatus.INTERNAL_SERVER_ERROR);	
+	}
+		
+	}
+
+}

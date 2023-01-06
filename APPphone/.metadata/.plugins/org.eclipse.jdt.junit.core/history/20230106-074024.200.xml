@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="MomOphoneApplicationTests" project="MOMOphone" tests="3" started="3" failures="0" errors="0" ignored="0">
+  <testsuite name="com.momo.momo.MomOphoneApplicationTests" time="0.679" displayname="MomOphoneApplicationTests" uniqueid="[engine:junit-jupiter]/[class:com.momo.momo.MomOphoneApplicationTests]">
+    <testcase name="testFindCompte" classname="com.momo.momo.MomOphoneApplicationTests" time="0.466" displayname="testFindCompte()" uniqueid="[engine:junit-jupiter]/[class:com.momo.momo.MomOphoneApplicationTests]/[method:testFindCompte()]"/>
+    <testcase name="testUpdateCompte" classname="com.momo.momo.MomOphoneApplicationTests" time="0.151" displayname="testUpdateCompte()" uniqueid="[engine:junit-jupiter]/[class:com.momo.momo.MomOphoneApplicationTests]/[method:testUpdateCompte()]"/>
+    <testcase name="contextLoads" classname="com.momo.momo.MomOphoneApplicationTests" time="0.057" displayname="contextLoads()" uniqueid="[engine:junit-jupiter]/[class:com.momo.momo.MomOphoneApplicationTests]/[method:contextLoads()]"/>
+  </testsuite>
+</testrun>

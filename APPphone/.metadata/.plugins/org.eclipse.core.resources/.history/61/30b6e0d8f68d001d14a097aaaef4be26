@@ -1,0 +1,64 @@
+package com.momo.momo.service.impl;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import com.momo.momo.entities.Compte;
+import com.momo.momo.repos.CompteRepository;
+import com.momo.momo.service.api.CompteService;
+
+@Service
+public class CompteServiceImpl implements CompteService{
+
+	@Autowired
+	CompteRepository compteRepository;
+	
+	@Override
+	public Compte saveCompte(Compte compt) {
+		return compteRepository.save(compt);
+	}
+	@Override
+	public ResponseEntity<String> updateCompte(Compte compt,Long id) {
+		Optional<Compte> compte = compteRepository.findById(id);
+		if(compte.isEmpty()) {
+			return new ResponseEntity<>(
+					"le compte n'existe pas",
+					HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
+		}if (compt.getUsername()!= null && !compte.get().getUsername().equals(compt.getUsername())) {
+			compte.get().setUsername(compt.getUsername());
+		}
+		//return App.findById(idUser);
+		compteRepository.saveAndFlush(compte.get());
+		return new ResponseEntity<>(
+				"Le compte a été modifié",
+				HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+
+	@Override
+	public String deleteCompte(Compte compt) {
+	 compteRepository.delete(compt);
+	return "Le compte a été supprimé";
+	}
+
+	@Override
+	public String deleteCompteById(Long id) {
+		compteRepository.deleteById(id);
+		return null;
+	}
+
+	@Override
+	public Compte getCompte(Long id) {
+		return compteRepository.findById(id).get();
+	}
+
+	@Override
+	public List<Compte> getAllComptes() {
+		return compteRepository.findAll();
+	}
+
+}

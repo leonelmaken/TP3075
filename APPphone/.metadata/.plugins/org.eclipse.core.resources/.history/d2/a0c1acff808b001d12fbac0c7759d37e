@@ -1,0 +1,8 @@
+package com.Test2.Test2.modele;
+
+import jakarta.persistence.Entity;
+
+@Entity
+public class Compte {
+
+}

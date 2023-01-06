@@ -1,0 +1,47 @@
+package com.momo.momo.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.momo.momo.entities.Compte;
+import com.momo.momo.repos.CompteRepository;
+import com.momo.momo.service.api.CompteService;
+
+public class CompteServiceImpl implements CompteService{
+
+	@Autowired
+	CompteRepository compteRepository;
+	
+	@Override
+	public Compte saveCompte(Compte compt) {
+		return compteRepository.save(compt);
+	}
+
+	@Override
+	public Compte updateCompte(Compte compt) {
+		
+		return compteRepository.saveAndFlush(compt);
+	}
+
+	@Override
+	public void deleteCompte(Compte compt) {
+	 compteRepository.delete(compt);
+	}
+
+	@Override
+	public void deleteCompteById(Long id) {
+		compteRepository.deleteById(id);
+	}
+
+	@Override
+	public Compte getCompte(Long id) {
+		return compteRepository.findById(id).get();
+	}
+
+	@Override
+	public List<Compte> getAllComptes() {
+		return compteRepository.findAll();
+	}
+
+}
