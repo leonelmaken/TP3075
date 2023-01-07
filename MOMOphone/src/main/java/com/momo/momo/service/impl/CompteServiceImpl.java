@@ -19,8 +19,37 @@ public class CompteServiceImpl implements CompteService{
 	CompteRepository compteRepository;
 	
 	@Override
-	public Compte saveCompte(Compte compt) {
-		return compteRepository.save(compt);
+	public ResponseEntity<String> saveCompte(Compte compt) {
+		try {
+			if (compt.getUsername().equals(null)) {
+		        return new ResponseEntity<>(
+		          "Vous devez entrer Votre User name", 
+		          HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
+		    }
+		   else if (compt.getNumeroTel()==0) {
+		        return new ResponseEntity<>(
+		          "Vous devez entrer Votre Numéro de téléphone", 
+		          HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
+		    }
+		   else if (compt.getCodepin().equals(null)) {
+		        return new ResponseEntity<>(
+		          "Vous devez entrer votre code Pin", 
+		          HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
+		    }
+		   else if (compt.getCNI()==0) {
+		        return new ResponseEntity<>(
+		          "Vous devez entrer votre Numéro de CNI", 
+		          HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
+		    }
+			 compteRepository.save(compt);
+			   return new ResponseEntity<>(
+					      "Votre Compte a été enregistré avec succès " + compteRepository.save(compt), 
+					      HttpStatus.OK);	
+		}catch(Exception e) {
+			return new ResponseEntity<>(
+				      "Erreur 500",HttpStatus.INTERNAL_SERVER_ERROR);	
+		}
+
 	}
 	@Override
 	public ResponseEntity<String> updateCompte(Compte compt,Long id) {
@@ -60,5 +89,4 @@ public class CompteServiceImpl implements CompteService{
 	public List<Compte> getAllComptes() {
 		return compteRepository.findAll();
 	}
-
 }

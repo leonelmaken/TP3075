@@ -2,9 +2,12 @@ package com.momo.momo.entities;
 
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class  Compte{
@@ -18,6 +21,9 @@ public class  Compte{
 	private int numeroTel;
 	private int CNI;
 	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="idUser")
+	private User user;
 
 	public Compte() {
 		super();
@@ -76,5 +82,17 @@ public class  Compte{
 	public String toString() {
 		return "Compte [idCompte=" + idCompte + ", username=" + username + ", Solde=" + Solde + ", Codepin=" + Codepin
 				+ ", numeroTel=" + numeroTel + ", CNI=" + CNI + "]";
+	}
+
+
+
+	public User getUser() {
+		return user;
+	}
+
+
+
+	public void setUser(User user) {
+		this.user = user;
 	} 
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.momo.momo.entities.Compte;
+import com.momo.momo.entities.User;
 import com.momo.momo.service.api.CompteService;
 
 @RestController
@@ -24,7 +25,7 @@ public class CompteControler {
 	CompteService compteService;
 	
 	@PostMapping(path="/create")
-	public Compte create(@RequestBody Compte compte) {
+	public ResponseEntity<String> create(@RequestBody Compte compte) {
 		return compteService.saveCompte(compte);	
 	}
 	
@@ -34,6 +35,10 @@ public class CompteControler {
 		
 	}
 	
+	@GetMapping(path="/readCompteId/{id}")
+	public Compte  readCompteId(@PathVariable Long id){
+		return compteService.getCompte(id);	
+	}
 	@PutMapping(path="/update/{id}")
 	public ResponseEntity<String> update(@RequestBody Compte compte,Long id) {
 		return compteService.updateCompte(compte, id);

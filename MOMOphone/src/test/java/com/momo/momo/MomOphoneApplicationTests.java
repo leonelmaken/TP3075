@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.momo.momo.entities.Compte;
+import com.momo.momo.entities.User;
 import com.momo.momo.repos.CompteRepository;
+import com.momo.momo.repos.UserRepository;
 
 @SpringBootTest
 class MomOphoneApplicationTests {
@@ -18,7 +20,7 @@ class MomOphoneApplicationTests {
 	
 	@Test
 	void contextLoads() {
-		Compte compt = new Compte("Pamm",80000.15,"Dopp123",677869312,153428);
+		Compte compt = new Compte("Elena",80000.15,"Dop123",677849313,157728);
 		compteRepository.save(compt);
 		Assertions.assertNotNull(compt.getIdCompte());
 	}
@@ -47,5 +49,45 @@ class MomOphoneApplicationTests {
 		List<Compte> compts = compteRepository.findAll();
 		for(Compte compt:compts)
 			System.out.println(compt);
+	}
+	/*===================================Users===================================*/
+	
+	@SuppressWarnings("unused")
+	@Autowired
+	private UserRepository userRepository;
+	
+	@Test
+	void saveUser() {
+		User user = new User("Marta",659834872,258963);
+		userRepository.save(user);
+		Assertions.assertNotNull(user.getIdUser());
+	}
+	@Test
+	void testFindUser()
+	{
+		User user = userRepository.findById(4L).get();
+		System.out.println(user.toString());
+	}
+	@Test
+	void testUpdateUser()
+	{
+		User user = userRepository.findById(2L).get();
+		user.setUsername("Yvan");
+		userRepository.save(user);
+		System.out.println("User modifié:"+user.toString());
+	}
+	@Test
+	void testDeleteUser()
+	{
+		
+		Assertions.assertThrows(Exception.class, ()->{userRepository.deleteById(1L);} );
+	}
+	
+	@Test
+	void testFillAllUser()
+	{
+		List<User> users = userRepository.findAll();
+		for(User user:users)
+			System.out.println("les users :"+user.toString());
 	}
 }
