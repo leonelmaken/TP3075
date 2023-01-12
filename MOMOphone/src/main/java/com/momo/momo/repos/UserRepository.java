@@ -5,5 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.momo.momo.entities.User;
 
 public interface UserRepository extends JpaRepository<User,Long>{
-
+     String	deleteByNumeroTel(int numeroTel);
+	 User findByNumeroTel(int numeroTel);
+	 User findByUsername(String username);
 }

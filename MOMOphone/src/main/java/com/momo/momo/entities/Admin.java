@@ -23,19 +23,6 @@ public class Admin {
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinTable(name="user_admin",joinColumns = @JoinColumn(name = "idAdmin"),inverseJoinColumns = @JoinColumn(name ="idUser" ))
 	private User user;
-	@OneToOne
-	@JoinColumn(name="compteAdmin")
-	private Compte compte;
-	
-	public Compte getCompte() {
-		return compte;
-	}
-
-
-	public void setCompte(Compte compte) {
-		this.compte = compte;
-	}
-
 
 	public Admin() {
 		super();

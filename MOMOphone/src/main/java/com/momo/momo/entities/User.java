@@ -20,9 +20,8 @@ public class User {
 	
 	@OneToMany (fetch=FetchType.LAZY, mappedBy = "user")
 	private List<Compte> comptes;
-	private Long idCompte;
-	
-	
+	@OneToMany (fetch=FetchType.LAZY, mappedBy = "user")
+	private List<ResponsableDeCoin> responsableDeCoinsdes;
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -46,14 +45,7 @@ public class User {
 	}
 	public void setUsername(String username) {
 		this.username = username;
-	}
-	public Long getIdCompte() {
-		return idCompte;
-	}
-	public void setIdCompte(Long idCompte) {
-		this.idCompte = idCompte;
-	}
-	public int getNumeroTel() {
+	}	public int getNumeroTel() {
 		return numeroTel;
 	}
 	public void setNumeroTel(int numeroTel) {
@@ -73,11 +65,16 @@ public class User {
 	public void setComptes(List<Compte> comptes) {
 		this.comptes = comptes;
 	}
+	public List<ResponsableDeCoin> getResponsableDeCoinsdes() {
+		return responsableDeCoinsdes;
+	}
+
+	public void setResponsableDeCoinsdes(List<ResponsableDeCoin> responsableDeCoinsdes) {
+		this.responsableDeCoinsdes = responsableDeCoinsdes;
+	}
 
 	@Override
 	public String toString() {
-		return "User [idUser=" + idUser + ", username=" + username + ", numeroTel=" + numeroTel + ", CNI=" + CNI
-				+ ", comptes=" + comptes + ", idCompte=" + idCompte + "]";
-	}
-	
+		return "User [idUser=" + idUser + ", username=" + username + ", numeroTel=" + numeroTel + ", CNI=" + CNI +"]";
+	}	
 }

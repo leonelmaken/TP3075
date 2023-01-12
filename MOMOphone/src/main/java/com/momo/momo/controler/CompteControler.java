@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.momo.momo.entities.Compte;
-import com.momo.momo.entities.User;
 import com.momo.momo.service.api.CompteService;
 
 @RestController

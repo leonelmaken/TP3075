@@ -21,6 +21,11 @@ public class CompteServiceImpl implements CompteService{
 	@Override
 	public ResponseEntity<String> saveCompte(Compte compt) {
 		try {
+			if (compt==null || compt.getUser()==null ||  compt.getUser().getIdUser().equals(null)) {
+		        return new ResponseEntity<>(
+		          "Vous devez entrer l'identifiant du User", 
+		          HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
+		    }
 			if (compt.getUsername().equals(null)) {
 		        return new ResponseEntity<>(
 		          "Vous devez entrer Votre User name", 

@@ -8,8 +8,10 @@ import com.momo.momo.entities.User;
 public interface UserService {
 	ResponseEntity<String> saveUser(User user);
 	ResponseEntity<String> updateUser(User user,Long id);
-	String deleteUser(User user);
 	String deleteUserById(Long id);
     User getUser(Long id);
 	List<User> getAllUsers();
+	String deleteUserByNumero(int numeroTel);
+	User getUserNumero(int numeroTel);
+	User getUserByName(String username);
 }

@@ -13,10 +13,9 @@ public interface AdminService {
 	 ResponseEntity<String> updateAdmin(Admin admin,Long id);
 	 String deleteAdminById(Long id);
 	 Admin getAdmin(Long id);
+	 Admin getAdminByUnsername(String username);
 	 List<Compte> getAllComptes();
+	 List<Admin> getAllAdmins();
 	 Compte getCompte(int numeroTel);
 	 List<User> getAllUsers();
-	 String deleteUserById(Long id);
-	 User getUser(Long id);
-	 User getUser(int numeroTel);
 }

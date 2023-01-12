@@ -54,12 +54,6 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public String deleteUser(User user) {
-		userRepository.delete(user);
-			return "Le User a été supprimé";
-	}
-
-	@Override
 	public String deleteUserById(Long id) {
 		userRepository.deleteById(id);
 		return "Le user a été supprimé";
@@ -73,6 +67,22 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public List<User> getAllUsers() {
 		return userRepository.findAll();
+	}
+
+	@Override
+	public String deleteUserByNumero(int numeroTel) {
+		userRepository.deleteByNumeroTel(numeroTel);
+		return "le User a été supprimé";
+	}
+
+	@Override
+	public User getUserNumero(int numeroTel) {
+		return userRepository.findByNumeroTel(numeroTel);
+	}
+
+	@Override
+	public User getUserByName(String username) {
+		return userRepository.findByUsername(username);
 	}
 
 }

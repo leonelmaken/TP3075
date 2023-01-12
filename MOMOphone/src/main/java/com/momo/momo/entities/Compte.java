@@ -24,7 +24,7 @@ public class  Compte{
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="idUser")
 	private User user;
-
+  
 	public Compte() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -78,21 +78,16 @@ public class  Compte{
 		this.numeroTel = numeroTel;
 	}
 
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	} 
+
 	@Override
 	public String toString() {
 		return "Compte [idCompte=" + idCompte + ", username=" + username + ", Solde=" + Solde + ", Codepin=" + Codepin
 				+ ", numeroTel=" + numeroTel + ", CNI=" + CNI + "]";
 	}
-
-
-
-	public User getUser() {
-		return user;
-	}
-
-
-
-	public void setUser(User user) {
-		this.user = user;
-	} 
 }
