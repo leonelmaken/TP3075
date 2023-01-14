@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="MomOphoneApplicationTests" project="MOMOphone" tests="1" started="1" failures="0" errors="0" ignored="0">
-  <testsuite name="com.momo.momo.MomOphoneApplicationTests" time="0.539" displayname="MomOphoneApplicationTests" uniqueid="[engine:junit-jupiter]/[class:com.momo.momo.MomOphoneApplicationTests]">
-    <testcase name="contextLoads" classname="com.momo.momo.MomOphoneApplicationTests" time="0.539" displayname="contextLoads()" uniqueid="[engine:junit-jupiter]/[class:com.momo.momo.MomOphoneApplicationTests]/[method:contextLoads()]"/>
-  </testsuite>
-</testrun>

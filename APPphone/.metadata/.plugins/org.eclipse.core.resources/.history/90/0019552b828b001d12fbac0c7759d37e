@@ -1,9 +1,0 @@
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-
-import com.Test2.Test2.modele.Compte;
-
-@Service
-public interface AppPhone {
-	ResponseEntity<Object> CréerCompt(Compte compte);
-}

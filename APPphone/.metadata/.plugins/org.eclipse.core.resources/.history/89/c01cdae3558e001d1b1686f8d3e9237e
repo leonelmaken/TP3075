@@ -1,0 +1,85 @@
+package com.momo.momo.entities;
+
+import java.util.List;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
+@Entity
+public class User {
+	@Id
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	private Long idUser;
+	private String username;
+	private int numeroTel;
+	private int CNI;
+	
+	@OneToMany (mappedBy = "user")
+	private List<Compte> comptes;
+	private Long idCompte;
+	
+	
+	public User(String username, int numeroTel, int CNI) {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	public User(Long idUser, String username, Long idCompte, int numeroTel, int cNI) {
+		super();
+		this.idUser = idUser;
+		this.username = username;
+		this.idCompte = idCompte;
+		this.numeroTel = numeroTel;
+		CNI = cNI;
+	}
+
+	public Long getIdUser() {
+		return idUser;
+	}
+	public void setIdUser(Long idUser) {
+		this.idUser = idUser;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public Long getIdCompte() {
+		return idCompte;
+	}
+	public void setIdCompte(Long idCompte) {
+		this.idCompte = idCompte;
+	}
+	public int getNumeroTel() {
+		return numeroTel;
+	}
+	public void setNumeroTel(int numeroTel) {
+		this.numeroTel = numeroTel;
+	}
+	public int getCNI() {
+		return CNI;
+	}
+	public void setCNI(int cNI) {
+		CNI = cNI;
+	}
+
+	public List<Compte> getComptes() {
+		return comptes;
+	}
+
+	public void setComptes(List<Compte> comptes) {
+		this.comptes = comptes;
+	}
+
+	@Override
+	public String toString() {
+		return "User [idUser=" + idUser + ", username=" + username + ", numeroTel=" + numeroTel + ", CNI=" + CNI
+				+ ", comptes=" + comptes + ", idCompte=" + idCompte + "]";
+	}
+	
+	
+}

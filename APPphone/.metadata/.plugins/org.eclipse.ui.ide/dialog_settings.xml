@@ -42,6 +42,7 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="/home/maken/Documents/APPphone"/>
 			<item value="/home/maken/Documents/workspace-spring-tool-suite-4-4.14.0.RELEASE/APPphone"/>
 			<item value="/home/maken/Documents/workspace-spring-tool-suite-4-4.14.0.RELEASE/Test2"/>
 			<item value="/home/maken/Documents/GitHub/TP3075/APPphone"/>

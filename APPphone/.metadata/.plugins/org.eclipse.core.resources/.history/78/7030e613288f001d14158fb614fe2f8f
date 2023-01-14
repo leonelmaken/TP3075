@@ -1,0 +1,5 @@
+package com.momo.momo.repos;
+
+public interface AdminRepository {
+
+}

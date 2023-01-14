@@ -1,0 +1,20 @@
+package com.momo.momo.entities;
+
+import java.util.List;
+
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
+public class ResponsableDeCoin {
+	@Id
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	private Long idRespo;
+	private String username;
+	private int numeroTel;
+	private int codeRespo;
+	@OneToMany (fetch=FetchType.LAZY, mappedBy = "responsableDeCoin")
+	private List<Compte> comptes;
+}

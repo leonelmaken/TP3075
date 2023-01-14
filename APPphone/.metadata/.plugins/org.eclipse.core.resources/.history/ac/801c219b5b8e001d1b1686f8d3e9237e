@@ -1,0 +1,10 @@
+package com.momo.momo.service.api;
+
+import org.springframework.http.ResponseEntity;
+
+import com.momo.momo.entities.User;
+
+public interface UserService {
+	ResponseEntity<String> saveUser(User user);
+	ResponseEntity<String> updateUser(User user,Long id);
+}
