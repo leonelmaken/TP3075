@@ -1,0 +1,96 @@
+package com.momo.momo.service.impl;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import com.momo.momo.entities.Compte;
+import com.momo.momo.repos.CompteRepository;
+import com.momo.momo.service.api.CompteService;
+
+@Service
+public class CompteServiceImpl implements CompteService{
+
+	@Autowired
+	CompteRepository compteRepository;
+	
+	@Override
+	public ResponseEntity<String> saveCompte(Compte compt) {
+		try {
+			if (compt==null || compt.getUser()==null ||  compt.getUser().getIdUser().equals(null)) {
+		        return new ResponseEntity<>(
+		          "Vous devez entrer l'identifiant du User", 
+		          HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
+		    }
+			if (compt.getUser().getUsername().equals(null)) {
+		        return new ResponseEntity<>(
+		          "Vous devez entrer Votre User name", 
+		          HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
+		    }
+		   else if (compt.getUser().getNumeroTel()==0) {
+		        return new ResponseEntity<>(
+		          "Vous devez entrer Votre Numéro de téléphone", 
+		          HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
+		    }
+		   else if (compt.getCodepin().equals(null)) {
+		        return new ResponseEntity<>(
+		          "Vous devez entrer votre code Pin", 
+		          HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
+		    }
+		   else if (compt.getUser().getCNI()==0) {
+		        return new ResponseEntity<>(
+		          "Vous devez entrer votre Numéro de CNI", 
+		          HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
+		    }
+			 compteRepository.save(compt);
+			   return new ResponseEntity<>(
+					      "Votre Compte a été enregistré avec succès " + compteRepository.save(compt), 
+					      HttpStatus.OK);	
+		}catch(Exception e) {
+			return new ResponseEntity<>(
+				      "Erreur 500",HttpStatus.INTERNAL_SERVER_ERROR);	
+		}
+
+	}
+	@Override
+	public ResponseEntity<String> updateCompte(Compte compt,Double Solde) {
+		Optional<Compte> compte = compteRepository.findById(compt.getIdCompte());
+		if(compte.isEmpty()) {
+			return new ResponseEntity<>(
+					"le compte n'existe pas",
+					HttpStatus.INTERNAL_SERVER_ERROR);//renvoie une erreur 500
+		}
+		compt.setSolde(compt.getSolde() + Solde);
+		//return App.findById(idUser);
+		compteRepository.saveAndFlush(compte.get());
+		return new ResponseEntity<>(
+				"Le compte a été modifié",
+				HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+
+	@Override
+	public String deleteCompte(Compte compt) {
+	 compteRepository.delete(compt);
+	return "Le compte a été supprimé";
+	}
+
+	@Override
+	public String deleteCompteById(Long id) {
+		compteRepository.deleteById(id);
+		return "Le compte a été supprimé";
+	}
+
+	@Override
+	public Compte getCompte(Long id) {
+		return compteRepository.findById(id).get();
+	}
+
+	@Override
+	public List<Compte> getAllComptes() {
+		return compteRepository.findAll();
+	}
+}
